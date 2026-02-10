@@ -1,0 +1,8 @@
+Backend development handles the server-side logic, database, and core functionality of web applications.
+Backend is (apne aap me ek) Techloliges ,Backend purely logic programming and terminal base.
+2 major components  ==>  programming language(c++,java,js,php) and database(mongo,mysql,sqlite)
+
+business logic => cupan apply or not, credit card is or not ,password exists or not.
+
+two package => Express : Routing (create server) ,, mongo : database.
+ 
