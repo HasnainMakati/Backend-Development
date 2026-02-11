@@ -5,4 +5,12 @@ Backend is (apne aap me ek) Techloliges ,Backend purely logic programming and te
 business logic => cupan apply or not, credit card is or not ,password exists or not.
 
 two package => Express : Routing (create server) ,, mongo : database.
- 
+
+{
+    production pe port ,, process.env.PORT se hi milega otherwise code nahi chalega.
+    process.env.PORT ==> kisi server par deploy karte he to server khud ka port deta he jo process.env.PORT me use hota he.
+    app.listen(3000) local (your pc) ke liye best he but production pe khali nahi (busy hoga) milega.
+    production ==> woh final environment jahan aapki application ya website live hoti hai aur real users use karte hain
+}
+
+bundlers ==> all javascript lo or use html,css,js me convert karo (jo browser understood karta he)

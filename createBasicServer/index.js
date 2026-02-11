@@ -9,7 +9,7 @@ const app = express()
 const port = 4000
 
 const githubData = {
-    "login": "HasnainMakati",
+    "login": "Hasnain Makati",
     "id": 259584014,
     "node_id": "U_kgDOD3jwDg",
     "avatar_url": "https://avatars.githubusercontent.com/u/259584014?v=4",
