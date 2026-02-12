@@ -14,3 +14,9 @@ two package => Express : Routing (create server) ,, mongo : database.
 }
 
 bundlers ==> all javascript lo or use html,css,js me convert karo (jo browser understood karta he)
+
+CORS error 2 solutions => install cors package
+
+whiteListing is security that preApproved IP-address,users,application ko database / system tak jane ki permission hoti he.
+
+BuildChain/ToolChain ==> (frontend only) if npm run build command ,, all react file le li or ek distribution folder me daldi like...index.html.css ,,
