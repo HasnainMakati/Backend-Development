@@ -21,3 +21,7 @@ whiteListing is security that preApproved IP-address,users,application ko databa
 
 BuildChain/ToolChain ==> (frontend only) if npm run build command ,, all react file le li or ek distribution folder me daldi like...index.html.css ,,
 
+1. domestic and international
+2.currat, saving, or jandhan
+3.accounts number and secrate pin 4 digit 0r 6 
+deposit ,withdraw , currant balance ,
