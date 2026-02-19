@@ -1,0 +1,27 @@
+{
+  "name": "backend-development",
+  "version": "1.0.0",
+  "description": "Backend Development Learning Time.........",
+  "keywords": [
+    "Javascript",
+    "Backend"
+  ],
+  "homepage": "https://github.com/HasnainMakati/Backend-Development#readme",
+  "bugs": {
+    "url": "https://github.com/HasnainMakati/Backend-Development/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasnainMakati/Backend-Development.git"
+  },
+  "license": "ISC",
+  "author": "Hassu Makati",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
