@@ -6,8 +6,9 @@ import cookieParser from 'cookie-parser'
 const app = express()
 
 // use => configuration karna & middleware set karne ke liye 
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN,                    // kaunsa frontend domain server se baat kar sakta hai.
     credentials: true
 }))
 
