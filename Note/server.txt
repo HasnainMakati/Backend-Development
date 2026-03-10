@@ -1,7 +1,28 @@
-<======= Server Status Code =====>
+<======= HTTP Server Status Code =====>
 
 // Informational responses (100 – 199)
 // Successful responses (200 – 299)
 // Redirection messages (300 – 399)
 // Client error responses (400 – 499)
 // Server error responses (500 – 599)
+
+<======= MOST COMMON HEADERS =====>
+
+Accebt : application / json  , data format
+User-Agent    : where request come
+Authorization  :    Bearar________jwt token
+Content-Type  :  Images , Pdf which data sends
+Cookie  :   
+Cache-Control  :    data expires timing
+
+<======= CORS HEADERS =====>
+
+Access-Control-Allow-Origin
+Access-Control-Allow-Credentials
+Access-Control-Allow-Methods
+
+<======= SECURITY HEADERS =====>
+
+Cross-Origin-Embedded-Policy
+Cross-Security-Policy
+X-XSS-Protection

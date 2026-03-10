@@ -2,8 +2,6 @@ import mongoose, { Schema } from "mongoose";
 // Used aggregation query write 
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
-
-
 const videoSchema = new Schema(
     {
         videoFile: {
@@ -43,5 +41,5 @@ const videoSchema = new Schema(
     { timestamps: true })
 
 
-videoSchema.plugin(mongooseAggregatePaginate)
+videoSchema.plugin(mongooseAggregatePaginate)                   //   Ek external functionality ko schema ke andar inject karna.
 export const Video = mongoose.model("Video", videoSchema)
