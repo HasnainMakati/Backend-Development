@@ -16,6 +16,14 @@ app.use(cors({
 app.use(express.json({ limit: "16kb" }))
 app.use(express.urlencoded({ extended: true, limit: "16kb" }))  // data come from  url and url space value change to special character . extended means obj inside obj
 app.use(express.static("public"))                               // public details store
-app.use(cookieParser)
+app.use(cookieParser())
+
+// routes import
+import userRouter from "./routes/user.routes.js"
+
+// routes declaration   ( it is middleware )
+app.use("/api/v1/users", userRouter)                        // http://localhost:8000/api/v1/users
+
 
 export { app }
+
