@@ -16,7 +16,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All field are required !")
     }
 
-    const existedUser = User.findOne({
+    const existedUser = await User.findOne({
         $or: [{ userName }, { email }]
     })
 
@@ -28,6 +28,8 @@ const registerUser = asyncHandler(async (req, res) => {
     const avatarLocalPath = req.files?.avatar[0]?.path;
     const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
+    console.log(req.files)
+
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar file is required")
     }
@@ -36,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
     if (!avatar) {
-        throw new ApiError(400, "Avatar file is required")
+        throw new ApiError(400, "Avatar upload failed")
     }
 
     const user = await User.create({
@@ -48,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
         userName: userName.toLowerCase()
     })
 
+    // by default all select so , we enter only items that we not take (like -password) 
     const createdUser = await User.findById(user._id).select(
         "-password -refreshToken"
     )
@@ -61,4 +64,6 @@ const registerUser = asyncHandler(async (req, res) => {
     )
 })
 
+
 export { registerUser }
+
