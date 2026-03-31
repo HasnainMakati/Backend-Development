@@ -7,7 +7,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 const registerUser = asyncHandler(async (req, res) => {
 
     const { userName, fullName, email, password } = req.body
-    console.log("Email :", email)
+    // console.log("Request Body :", req.body)
 
     // advance pattern to check
     if (
@@ -26,9 +26,15 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Images path getting
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path;              // here value is undefined 
 
-    console.log(req.files)
+    let coverImageLocalPath;
+    if (req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0) {
+        coverImageLocalPath = req.files.coverImage[0].path;
+    }
+
+    console.log(coverImageLocalPath)
+    console.log("Req Files", req.files)
 
     if (!avatarLocalPath) {
         throw new ApiError(400, "Avatar file is required")
@@ -55,6 +61,8 @@ const registerUser = asyncHandler(async (req, res) => {
         "-password -refreshToken"
     )
 
+    console.log("Created User", createdUser)
+
     if (!createdUser) {
         throw new ApiError(500, "Something went wrong while registering the user")
     }
@@ -64,6 +72,4 @@ const registerUser = asyncHandler(async (req, res) => {
     )
 })
 
-
 export { registerUser }
-
