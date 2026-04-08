@@ -53,7 +53,8 @@ const userSchema = new Schema(
 
 // plain text password make to strong methods
 userSchema.pre("save", async function () {
-    if (!this.isModified("password")) return;
+
+    if (!this.isModified("password")) return;                               // means kuch update ,ya changes nahi hue to , modified mat karo
     this.password = await bcrypt.hash(this.password, 10)
 })
 

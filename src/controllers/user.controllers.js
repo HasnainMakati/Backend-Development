@@ -55,8 +55,8 @@ const registerUser = asyncHandler(async (req, res) => {
         userName: userName.toLowerCase()
     })
 
-    // by default all select so , we enter only items that we not take (like -password) 
-    const createdUser = await User.findById(user._id).select(
+    // findById check user data is done all fields
+    const createdUser = await User.findById(user._id).select(                  // select :: by default all select so , we enter only items that we not take (like -password) 
         "-password -refreshToken"
     )
 
@@ -100,8 +100,9 @@ const generateAccessAndRefreshTokens = async (userId) => {
 const loginUser = asyncHandler(async (req, res) => {
 
     const { userName, email, password } = req.body
+    console.log(email, password)
 
-    if (!userName || !email) {
+    if (!userName && !email) {
         throw new ApiError(400, "Username or Email is required !")
     }
 
@@ -154,7 +155,7 @@ const logoutUser = asyncHandler(async (req, res) => {
             }
         },
         {
-            new: true                                              // return value with new means user logout
+            returnDocument: "after"                                         // return a message ke data update hua he and user logout
         }
     )
 
@@ -165,8 +166,8 @@ const logoutUser = asyncHandler(async (req, res) => {
 
     return res
         .status(200)
-        .clearCookie(accessToken, options)
-        .clearCookie(refreshToken, options)
+        .clearCookie("accessToken", options)
+        .clearCookie("refreshToken", options)
         .json(new ApiResponse(200, {}, "User logged out"))
 })
 export {

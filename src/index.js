@@ -2,7 +2,8 @@
 
 import dotenv from "dotenv"
 dotenv.config({
-    path: './.env'                       // ./.env
+    path: './.env',                       // ./.env
+    quiet: true
 })
 
 import connectDB from "./db/index.js";
