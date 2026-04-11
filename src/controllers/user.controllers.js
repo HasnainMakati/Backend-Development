@@ -150,8 +150,8 @@ const logoutUser = asyncHandler(async (req, res) => {
     await User.findByIdAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: ""               // remove field from documents
             }
         },
         {
@@ -210,7 +210,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
                     {
                         accessToken, refreshToken: newRefreshToken
                     },
-                    "Access token refreshed "
+                    "Access token refreshed"
                 )
             )
     } catch (error) {
@@ -242,7 +242,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 
 const getCurrentUser = asyncHandler(async (req, res) => {
     return res
-        .status
+        .status(200)
         .json(
             new ApiResponse(200, req.user, "Current user fetched successfully")
         )
@@ -267,6 +267,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         }
     ).select("-password")
 
+    console.log(user, "Update account details")
     return res
         .status(200)
         .json(
@@ -274,6 +275,9 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         )
 })
 
+// const deleteAccountDetails = asyncHandler(async (req, res) => {
+
+// })
 const updateUserAvatar = asyncHandler(async (req, res) => {
 
     const avatarLocalPath = req.file?.path
@@ -283,6 +287,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     }
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
+    console.log(avatar)
 
     if (!avatar.url) {
         throw new ApiError(400, "Error while uploading on avatar")
@@ -331,7 +336,8 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
         {
             returnDocument: "after"
         }
-    ).select("-password")
+    )
+
 
     return res
         .status(200)
@@ -391,8 +397,8 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
         {
             $project: {
                 userName: 1,
-                fullName: 2,
-                email,
+                fullName: 1,
+                email: 1,
                 subscriberCounts: 1,
                 channelSubscribedCount: 1,
                 isSubscribed: 1,
@@ -402,6 +408,7 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
         }
     ])
 
+    console.log(channel, "Channel")
     if (!channel?.length) {
         throw new ApiError(404, "channel does not exists")
     }
@@ -457,12 +464,14 @@ const getWatchHistory = asyncHandler(async (req, res) => {
         }
     ])
 
+    console.log(user, "get watch history")
     return res
         .status(200)
         .json(
-            new ApiResponse(200, user[0], "watch history successfully fetch")
+            new ApiResponse(200, user[0].watchHistory, "watch history successfully fetch")
         )
 })
+
 export {
     loginUser,
     registerUser,
@@ -475,5 +484,4 @@ export {
     updateUserCoverImage,
     getUserChannelProfile,
     getWatchHistory
-
 }
