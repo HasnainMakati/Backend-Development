@@ -12,6 +12,9 @@ app.use(cors({
     credentials: true
 }))
 
+app.get("/", (req, res) => {
+    res.send("Server is running 🚀")
+})
 // request me jo data aayega vo body,json,url,form to uske liye kuch settings hote he..
 app.use(express.json({ limit: "16kb" }))
 app.use(express.urlencoded({ extended: true, limit: "16kb" }))  // data come from  url and url space value change to special character . extended means obj inside obj

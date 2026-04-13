@@ -276,23 +276,24 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 })
 
 const deleteAccountDetails = asyncHandler(async (req, res) => {
-    await User.findByIdAndDelete(
-        req.user.id,
-        {
-            $unset: {
-                users: ""
-            }
-        },
-        {
-            returnDocument: "after"
-        }
 
-    )
+    const user = await User.findByIdAndDelete(req.user._id)
+
+    if (!user) {
+        throw new ApiError(404, "User not founds")
+    }
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
 
     return res
         .status(200)
+        .clearCookie("accessToken", options)
+        .clearCookie("refresh", options)
         .json(
-            new ApiError(200, {}, "Delete user")
+            new ApiResponse(200, {}, `${user.userName} user delete`)
         )
 })
 
